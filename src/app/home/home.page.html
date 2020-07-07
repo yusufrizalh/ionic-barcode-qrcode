@@ -1,20 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Ionic QR/ Barcode Scanner
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h1>Click Button To Scan</h1>
+  <ion-button color="primary" (click)="scanBar()">
+    Scan Code
+  </ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div *ngIf="scannedData">
+    <p>
+      Scanned Code Text : <b>{{ scannedData["text"] }}</b>
+    </p>
+    <p>
+      Scanned Code Format : <b>{{ scannedData["format"] }}</b>
+    </p>
   </div>
+
+  <h1>Enter Value to Create QR code</h1>
+  <ion-input placeholder="Enter Input" [(ngModel)]="encodedData">
+  </ion-input>
+
+  <ion-button color="success" (click)="generateBar()">
+    Create QR
+  </ion-button>
 </ion-content>
